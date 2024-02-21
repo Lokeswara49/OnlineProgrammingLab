@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .submit_div{
+        text-align:center;
+        padding-top:100px;
+    }
+    .submit_div1 h2{
+        padding-bottom:20px;
+    }
+
+</style>
+
+<div class="submit_div">
+    <div class="submit_div1">
+        <h2> Your response has been recorded </h2>
+    </div>
+    <div>
+        <a class="btn btn-primary btn-lg" href="/room/{{room.id}}" role="button">Go Back</a>
+    </div>
+</div>
+
+
+{% endblock %}

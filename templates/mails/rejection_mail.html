@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Hello {{ room.host.username }}
+
+This mail is regarding the verification status of the room "{{room.name}}" created by you.
+
+We have reviewed your room and unfortunately we could not approve the room created by you.
+
+{% if reason %}
+We use this feedback for further creation of rooms
+
+{{reasons}}
+{%endif%}
+{% endautoescape %}

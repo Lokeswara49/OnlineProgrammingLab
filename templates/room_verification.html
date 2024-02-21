@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .submit_div{
+        text-align:center;
+        padding-top:100px;
+    }
+    .submit_div1 h3{
+        padding-bottom:20px;
+    }
+
+
+
+</style>
+{% if verified %}
+<div class="submit_div">
+    <div class="submit_div1">
+        <h3> You are already authenticated </h3>
+    </div>
+    <div style="padding-top:20px">
+        <a class="btn btn-primary" href="/room/{{room.id}}" role="button">Go Ahead</a>
+    </div>
+</div>
+{%else%}
+<div class="submit_div">
+    <form action="" method="POST">
+        {%csrf_token%}
+        <div class="submit_div1">
+            <h3> Please enter the room password </h3>
+        </div>
+        <div>
+            <input style="width:300px" type="text" id="room_password" name="room_password" required>
+        </div>
+        <div style="padding-top:20px">
+            <button class="btn btn-primary" type="submit">Join Now</button>
+        </div>
+
+    </form>
+</div>
+{%endif%}
+{% endblock %}

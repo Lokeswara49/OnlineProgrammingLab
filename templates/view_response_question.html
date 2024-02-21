@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .question-compiler-container{
+        display:grid;
+        grid-template-columns :3fr  7fr;
+    }
+    .question-container{
+        border-right:solid;
+        margin:10px;
+    }
+    .compiler-container{
+        margin:10px;
+    }
+
+</style>
+
+<div class="question-compiler-container">
+
+    <div class="question-container">
+        <h4>{{question.question_title}}</h4>
+        <h6>{{question.question_full|linebreaks}}</h6>
+        <h6>{{question.sample_test_case|linebreaks}}</h6>
+        <!--Use either <pre> tag or |linebreaks filter to get \n in output-->
+    </div>
+    <div class="compiler-container">
+        <h1>Compiler Here</h1>
+        <form method="post" action="/final_submit/">
+            {% csrf_token %}
+            {{form.as_p}}
+            <!--<input type="submit" value="Final Submit">-->
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+.room-tile{
+		margin: auto;
+		height: 115px;
+		width: 900px;
+		border-style: solid;
+	}
+
+	.room-tile-1{
+		border-style: solid;
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+	}
+	.room-tile-name{
+		margin: auto;
+	}
+	.room-tile-button{
+		margin: auto;
+	}
+	.room-tile-button a{
+		width: 225px;
+		height: 67px;
+		padding:20px;
+	}
+
+	.room-tile-2{
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+	}
+    .room-tile-host{
+        margin:left;
+    }
+    .room-tile-settings{
+        margin:auto;
+    }
+	.room-tile-host h6{
+		padding-top:7px;
+		padding-left:4px;
+	}
+	.room-tile-settings button{
+	    width:227px;
+	    height: 38.5px;
+	    padding-top:4px;
+		padding-left:4px;
+	}

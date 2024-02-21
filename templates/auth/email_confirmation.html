@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Hello {{ name }}
+
+Welcome to Online Programming Platform
+
+Please confirm your email by clicking on following link
+
+Confirm link: http://{{domain}}{%url 'activate' uidb64=uid token=token %}
+
+{% endautoescape %}

@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/auth/index_style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h3 style="text-align:center;padding-top:50px;">Hello {{user.username}}</h3>
+<h4 style="text-align:center;padding-top:10px;">You're verified successfully.</h4>
+<div style="text-align:center;padding-top:10px;">
+    <a class="btn btn-primary rounded-0" href="/home" role="button" style="width:240px;">
+        <strong>Proceed to Home</strong></a>
+</div>
+{%endif%}
+
+
+{% endblock %}

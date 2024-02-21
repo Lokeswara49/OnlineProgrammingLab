@@ -1,0 +1,28 @@
+.login-title{
+        margin:auto;
+        text-align:center;
+        padding-top:50px;
+    }
+    .login-form{
+        margin:auto;
+        text-align:center;
+        padding-top:20px;
+        font-size:22px;
+    }
+    .login-form p{
+        font-size:16px;
+        padding-right:0px;
+    }
+    .login-form p strong a{
+        text-decoration:none;
+    }
+    .login-form-bt{
+        margin:auto;
+        text-align:center;
+        padding-top:5px;
+
+    }
+    .login-form-bt button{
+        padding-left:25px;
+        padding-right:25px;
+    }

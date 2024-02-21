@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .delete_div{
+        text-align:center;
+        padding-top:100px;
+    }
+    .delete_div h2{
+        padding-bottom:20px;
+    }
+
+</style>
+
+
+<div class="delete_div">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h2>Are you sure you want to reject the approval of "{{room.name}}"?</h2>
+        <div>
+        <label>Provide reasons for rejection</label>
+        <textarea placeholder="optional" name="reason" id="reason"></textarea>
+        </div>
+        <a class="btn btn-primary btn-lg" href="{{request.META.HTTP_REFERER}}" role="button">No, Go back</a>
+        <button class="btn btn-danger btn-lg" type="submit">Delete</button>
+    </form>
+</div>
+
+{% endblock %}

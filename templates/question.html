@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .question-compiler-container{
+        display:grid;
+        grid-template-columns :3fr  7fr;
+    }
+    .question-container{
+        border-right:solid;
+        margin:10px;
+    }
+    .compiler-container{
+        margin:10px;
+    }
+    .submit_run_buttons{
+        text-align:right;
+        padding:10px;
+    }
+</style>
+
+<div class="question-compiler-container">
+
+    <div class="question-container">
+        <h4 style="padding-top:10px;padding-bottom:10px;">{{question.question_title}}</h4>
+        <h6>{{question.question_full|linebreaks}}</h6>
+        <h6 style="font-weight:normal">{{question.sample_test_case|linebreaks}}</h6>
+        <!--Use either <pre> tag or |linebreaks filter to get \n in output-->
+    </div>
+    <!--
+    <div class="compiler-container">
+        <h1>Compiler Here</h1>
+        <form method="post" action="/final_submit/">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Final Submit">
+        </form>
+
+    </div>
+    -->
+    <div class="compiler-container">
+
+        <form method="post" action="run">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label for=""><h4>Coding Area</h4></label>
+                    </div>
+                    <!--
+                    <div class="col-md-2">
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>Python3</option>
+                            <option value="1">C</option>
+                            <option value="2">C++</option>
+                            <option value="3">Java1.8</option>
+                        </select>
+                    </div>-->
+                    <textarea class="form-control" rows="14" name="code" id="code" style="border:1px solid grey;
+                font-family: 'Lucida Console'; font-size: 20px; "
+                              onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,
+                          e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=
+                          this.selectionEnd=s+1;return false;}">{{code}}</textarea>
+                </div>
+                <div class="row" style="padding-top:8px;">
+                    <div class="col">
+                        <label for=""><h5>Input</h5></label>
+                        <textarea class="form-control" rows="7" name="input"
+                                  style="border:1px solid grey;">{{input}}</textarea>
+                    </div>
+                    <div class="col">
+                        <label for=""><h5>Output</h5></label>
+                        <textarea class="form-control" rows="7" name="output" style="border:1px solid grey;"
+                                  disabled>{{output}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="submit_run_buttons">
+                <input class="btn btn-primary" type="submit" name="run" value="Run">
+                {% if submitFlag == True%}
+                <input class="btn btn-danger" type="submit" name="final_submit" value="Submit">
+                {%endif%}
+            </div>
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
+

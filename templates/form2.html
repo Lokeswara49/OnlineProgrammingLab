@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Currently, Form 2 is for creation , whereas form.html for update -->
+
+<div style="padding-top:20px; padding-left:40px;font-size:25px">
+    {% if room %}
+    <h4 style="padding-left:220px;padding-bottom:15px;"> UPDATE ROOM </h4>
+    {%else%}
+    <h4 style="padding-left:120px;padding-bottom:15px;"> CREATE ROOM and QUESTIONS </h4>
+    {%endif%}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div style="padding-bottom:10px;">
+                <label for="">Room/Lab Name : </label>
+                <input type="text" id="roomname" name="roomname" required  value="{{room.name}}"
+                       style="width:394px; border-width:1px; border-color:black">
+            </div>
+
+            <div style="padding-bottom:10px;">
+                <label for="">Description : </label>
+                <textarea class="form-control"  id="description" name="description"
+                          style="height: 150px;width:600px; border-width:1px;
+                          border-color:black">{{room.description}}</textarea>
+            </div>
+
+            <div style="padding-bottom:10px;">
+                <label for="">Password : </label>
+                <input type="text" id="roompassword" name="roompassword" required value="{{room.password}}"
+                       style="width:478px; border-width:1px; border-color:black">
+            </div>
+
+            {% if room %}
+            {%else%}
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
+                 style="padding-left:150px;">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="btnradio1"
+                       autocomplete="off" checked required>
+                <label class="btn btn-outline-primary" for="btnradio1">Add Questions</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="btnradio2"
+                       autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Create Only Room</label>
+            </div>
+            {%endif%}
+            <div style="padding-left:200px; padding-top:10px">
+                <button class="btn btn-danger" type="submit">Submit & Continue</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

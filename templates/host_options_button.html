@@ -1,0 +1,17 @@
+<!-- Default dropend button -->
+<div class="room-tile-settings">
+    <div class="btn-group dropend">
+        <button type="button" class="btn btn-secondary dropdown-toggle rounded-0"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Host Options
+        </button>
+        <ul class="dropdown-menu">
+            <a class="dropdown-item" href="/room_responses/{{room.id}}">Check Responses</a>
+            <a class="dropdown-item" href="//{{request.get_host}}/create_question/{{room.id}}">Add
+                Questions</a>
+            <a class="dropdown-item" href="/update_room/{{room.id}}">Edit Room</a>
+            <a class="dropdown-item" href="/delete_room/{{room.id}}">Delete Room</a>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Currently, Form 2 is for creation , whereas form.html for update -->
+
+<div style="padding-top:20px; padding-left:40px;font-size:25px" >
+    {% if question %}
+    <h2 style="padding-left:150px;padding-bottom:15px;"> UPDATE QUESTION </h2>
+    {%else%}
+    <h2 style="padding-left:150px;padding-bottom:15px;"> CREATE QUESTIONS </h2>
+    {%endif%}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div style="padding-bottom:10px;">
+                <label for="">Question title: </label>
+                <input type="text" id="questiontitle" name="questiontitle" required
+                       value="{{question.question_title}}"
+                       style="width:438px; border-width:1px; border-color:black">
+            </div>
+
+            <div style="padding-bottom:10px;">
+                <label for="">Full Question : </label>
+                <textarea class="form-control" placeholder="" id="fullquestion" name="fullquestion"
+                          style="height: 130px;width:600px; border-width:1px;
+                          border-color:black">{{question.question_full}}</textarea>
+            </div>
+
+            <div style="padding-bottom:10px;">
+                <label for="">Sample Test Cases: </label>
+                <textarea class="form-control" placeholder="" id="testcase" name="testcase"
+                          style="height: 130px;width:600px; border-width:1px;
+                          border-color:black">{{question.sample_test_case}}</textarea>
+            </div>
+            {% if question %}
+            {%else%}
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="padding-left:77px;">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="btnradio1"
+                       autocomplete="off" checked required>
+                <label class="btn btn-outline-primary" for="btnradio1">Add More Questions</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="btnradio2"
+                       autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Add Only This Question</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" value="btnradio3"
+                       autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio3">Cancel</label>
+            </div>
+            {%endif%}
+            <div style="padding-left:210px; padding-top:10px">
+                <button class="btn btn-danger" type="submit">Submit & Continue</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

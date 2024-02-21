@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/auth/login_style.css' %}">
+
+{% endblock %}
+{% block content %}
+
+{% for message in messages %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <strong>Message : </strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+<div class="login-title">
+    <h1>LOGIN</h1>
+</div>
+
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <div class="login-form">
+    <label for="" >Username : </label>
+    <input type="text" id="username" name="username" required>
+    </div>
+
+    <div class="login-form" style="padding-left:7px;">
+    <label for="">Password : </label>
+    <input type="password" id="password" name="password" required>
+    </div>
+    <div class="login-form">
+    <p>Does not have an account? <strong><a href="//{{request.get_host}}/register/">Register</a></strong></p>
+    </div>
+    <div class="login-form-bt">
+        <button class="btn btn-primary rounded-0" type="submit" style="font-size:22px;">Login</button>
+    </div>
+</form>
+
+{% endblock %}

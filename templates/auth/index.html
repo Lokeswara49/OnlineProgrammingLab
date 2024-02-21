@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/auth/index_style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+{% for message in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="index-title">
+    <h1>Welcome to Online Programming Platform</h1>
+</div>
+
+{% if user.is_authenticated %}
+<h3 style="text-align:center;padding-top:50px;font-weight:normal">Hello <strong>{{user.username}}</strong></h3>
+<h4 style="text-align:center;padding-top:10px;font-weight:normal">You're successfully logged in.</h4>
+<div style="text-align:center;padding-top:10px;">
+    <a class="btn btn-primary rounded-0" href="/home" role="button" style="width:240px;">
+        <strong>Go to Home</strong></a>
+</div>
+<div style="text-align:center;padding-top:10px;">
+    <a class="btn btn-danger rounded-0" href="/logout" role="button" style="width:240px;">
+        <strong>Logout</strong></a>
+</div>
+{%else%}
+<div class="index-body2">
+    <div></div>
+    <div><a class="btn btn-light rounded-0" href="/login" role="button" style="width:240px;">
+        {% load static%}
+        <img src="{% static 'images/login.png' %}" width=200px>
+        <strong>Login</strong></a></div>
+    <div><a class="btn btn-light rounded-0" href="/register" role="button" style="width:240px;">
+        {% load static%}
+        <img src="{% static 'images/register.png' %}" width=200px>
+        <strong>Register</strong></a></div>
+    <div></div>
+</div>
+{%endif%}
+
+
+{% endblock %}

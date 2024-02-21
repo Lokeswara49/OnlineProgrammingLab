@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/room_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<style>
+    .room-container{
+        margin:10px;
+    }
+
+
+
+</style>
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="room-container">
+    <div>
+        <h2 style="text-align:center;padding:10px;">{{room.name}}</h2>
+    </div>
+    <div>
+        <h4 style="text-align:center;padding:10px;font-weight:normal"><strong>Description :</strong>
+            {{room.description}}</h4>
+        <br>
+    </div>
+
+    <div>
+        <div>
+            {% for question,solved in zip %}
+
+            <div class="question-tile">
+                <div class="question-tile-name">
+                    <h3>{{question.question_title}}</h3>
+                </div>
+                {% if solved %}
+                <div class="question-tile-button">
+                    <a href="/room/{{room.id}}/{{question.id}}/" class="btn btn-primary rounded-0">Solved</a>
+                </div>
+                {%else%}
+                <div class="question-tile-button">
+                    <a href="/room/{{room.id}}/{{question.id}}/" class="btn btn-info rounded-0">Solve</a>
+                </div>
+
+                {%endif%}
+                {% if request.user == room.host %}
+                {%include 'host_options_button2.html' %}
+                {%elif request.user.username == 'admin' %}
+                {%include 'host_options_button2.html' %}
+                {%endif%}
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+        {% if request.user == room.host %}
+        <div style="text-align:center">
+            <a class="btn btn-danger" href="//{{request.get_host}}/create_question/{{room.id}}" role="button">Add More
+                Questions</a>
+        </div>
+        {%elif request.user.username == 'admin' %}
+        <div style="text-align:center">
+            <a class="btn btn-danger" href="//{{request.get_host}}/create_question/{{room.id}}" role="button">Add More
+                Questions</a>
+        </div>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}
+

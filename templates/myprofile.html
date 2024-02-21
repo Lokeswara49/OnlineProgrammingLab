@@ -1,0 +1,115 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<style>
+
+     .profile_page{
+        display:grid;
+        grid-template-columns :3fr  7fr;
+    }
+    .my_profile{
+        test-align:center;
+        border-right:solid;
+        margin:10px;
+    }
+    .my_profile2{
+        margin:10px;
+    }
+    .my_profile h2{
+        padding-top:8px;
+        padding-bottom:8px;
+        text-align:center;
+    }
+    .tile{
+        padding:10px;
+        padding-left:30px;
+    }
+    .tile label{
+        font-size:20px;
+    }
+    .tile input{
+        font-size:20px;
+    }
+
+
+</style>
+
+<div class="profile_page">
+    <div class="my_profile">
+        <h2>My Profile</h2>
+        <div class="tile">
+            <label style="font-size:20px;">Username : </label>
+            <input style="font-size:20px;" placeholder={{request.user.username}} disabled>
+        </div>
+        <div class="tile" style="padding-left:32px;">
+            <label >Firstname : </label>
+            <input disabled placeholder={{user.first_name}}>
+        </div>
+        <div class="tile" style="padding-left:33px;">
+            <label >Lastname : </label>
+            <input disabled placeholder={{user.last_name}}>
+        </div>
+        <div class="tile" style="padding-left:33px;">
+            <label >Email Address : </label>
+            <input disabled placeholder={{user.email}} style="width:333px;font-size:16px; ">
+        </div>
+        <div style="text-align:center;padding-right:30px;padding-top:15px;">
+            <p style="font-size:14px;"> Account created on {{user.date_joined}}</p>
+        </div>
+    </div>
+    <div>
+    <div class="my_profile2">
+        <h2> Rooms Joined </h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Room Title</th>
+                <th scope="col"> link </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for room in roomsjoined %}
+            <tr>
+                <td>{{room.room.name}}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm"
+                       href="//{{request.get_host}}/room/{{room.room.id}}/"
+                       role="button">Go to Room</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="my_profile2">
+        <h2 style="padding-top:20px"> My Responses </h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Question Title</th>
+                <th scope="col">Room/Lab Title</th>
+                <th scope="col">Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sol in solutions %}
+            <tr>
+                <td>{{sol.question}}</td>
+                <td>{{sol.room}}</td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       href="//{{request.get_host}}/view_response/{{sol.question.room.id}}/{{sol.question.id}}/{{sol.id}}/"
+                       role="button">Check Response</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        </div>
+</div>
+
+
+{% endblock %}
+

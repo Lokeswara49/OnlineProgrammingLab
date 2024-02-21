@@ -1,0 +1,14 @@
+<div class="question-tile-settings">
+    <div class="btn-group dropend">
+        <button type="button" class="btn btn-secondary dropdown-toggle rounded-0" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            {% load static %}
+            <img src="{% static 'images/gear.png' %}" width="20px">
+        </button>
+        <ul class="dropdown-menu">
+            <a class="dropdown-item" href="/question_responses/{{room.id}}/{{question.id}}">Check Responses</a>
+            <a class="dropdown-item" href="/update_question/{{room.id}}/{{question.id}}">Edit Question</a>
+            <a class="dropdown-item" href="/delete_question/{{room.id}}/{{question.id}}">Delete Question</a>
+        </ul>
+    </div>
+</div>

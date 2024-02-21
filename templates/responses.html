@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Question Title</th>
+        <th scope="col">Room/Lab Title</th>
+        <th scope="col">Code</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for sol in solutions %}
+    <tr>
+        <th scope="row">{{sol.id}}</th>
+        <td>{{sol.user}}</td>
+        <td>{{sol.question}}</td>
+        <td>{{sol.room}}</td>
+        <td>
+            <a class="btn btn-primary"
+               href="//{{request.get_host}}/view_response/{{room.id}}/{{sol.question.id}}/{{sol.id}}/"
+               role="button">Check Code</a>
+        </td>
+        <td><a class="btn btn-danger"
+               href="//{{request.get_host}}/delete_response/{{room.id}}/{{sol.question.id}}/{{sol.id}}/"
+               role="button">Delete Response </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
+

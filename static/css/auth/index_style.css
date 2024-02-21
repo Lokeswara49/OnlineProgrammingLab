@@ -1,0 +1,14 @@
+
+.index-title h1{
+    margin:auto;
+    text-align:center;
+    padding-top:50px;
+}
+.index-body2 {
+    display:grid;
+    padding-top:50px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin:auto;
+    text-align:center;
+    position:relative;
+}
